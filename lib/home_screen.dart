@@ -1,5 +1,5 @@
 import './face_detection_camera.dart';
-import './face_detection_image.dart';
+import 'Detection_on_image.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
