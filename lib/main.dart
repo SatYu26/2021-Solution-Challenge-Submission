@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-
+import 'package:facemaskdetection/splashscreen.dart';
+import 'package:flutter/material.dart' show BuildContext, Colors, MaterialApp, StatelessWidget, ThemeData, Widget, runApp;
 import 'home_screen.dart';
 
 void main() => runApp(MyApp());
@@ -11,10 +11,10 @@ class MyApp extends StatelessWidget {
       title: 'Face Mask Detector',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        primaryColor: Colors.indigo,
+        primarySwatch: Colors.blueGrey,
+        primaryColor: Colors.lightGreen,
       ),
-      home: HomeScreen(),
+      home: MySplash(),
     );
   }
 }
