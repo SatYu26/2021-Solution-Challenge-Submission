@@ -7,14 +7,22 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Face Mask Detector'),
+        title: Text('Face Mask Detector'),backgroundColor: Colors.white70,shadowColor: Colors.red,
       ),
-      body: Center(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/Doodle.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            RaisedButton(
-              child: Text('Detect face mask from the Image'),
+            Expanded(child: Container(color: Color(0x00000000),),),
+            RaisedButton( shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),side: BorderSide(color: Colors.blueAccent) ,
+            ),
+              child: Text('Detect face mask from the Image' , style: TextStyle(color: Colors.black ),),
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
@@ -23,8 +31,10 @@ class HomeScreen extends StatelessWidget {
                 );
               },
             ),
-            RaisedButton(
-              child: Text('Detect face mask from Live Camera'),
+            SizedBox(height: 10),
+            RaisedButton( shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),side: BorderSide(color: Colors.red)
+            ),
+              child: Text('Detect face mask from Live Camera' , style: TextStyle(color: Colors.black )),
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(

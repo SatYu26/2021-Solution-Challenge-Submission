@@ -49,6 +49,7 @@ flutter:
    - assets/ml_trained_model/model_unquant.tflite
    - assets/ml_trained_model/labels.txt
    - assets/maskSplash.png
+   - assets/Doodle.jpg
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

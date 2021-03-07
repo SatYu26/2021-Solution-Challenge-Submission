@@ -17,7 +17,7 @@ class _MySplashState extends State<MySplash> {
     ),
     ),
     image: Image.asset('assets/maskSplash.png'),
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: Colors.blueGrey[300],
       photoSize: 80,
       loaderColor: Colors.white70,
     );
