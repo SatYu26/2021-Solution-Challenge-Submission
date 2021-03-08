@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:tflite/tflite.dart';
-import 'package:image_picker/image_picker.dart' show ImagePicker, ImageSource;
+import 'package:image_picker/image_picker.dart';
 
 class FaceDetectionFromImage extends StatefulWidget {
   @override
@@ -49,7 +49,7 @@ class _FaceDetectionFromImageState extends State<FaceDetectionFromImage> {
   }
 
   pickImage() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+    final image = await picker.getImage(source: ImageSource.camera);
     if (image == null) return null;
 
     setState(() {
@@ -59,7 +59,7 @@ class _FaceDetectionFromImageState extends State<FaceDetectionFromImage> {
   }
 
   pickGalleryImage() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    final image = await picker.getImage(source: ImageSource.gallery);
     if (image == null) return null;
 
     setState(() {
@@ -72,7 +72,8 @@ class _FaceDetectionFromImageState extends State<FaceDetectionFromImage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Color(0xAADB4437),
+        elevation: 0,
         title: Text(
           'Face Mask Recognition',
           style: TextStyle(
@@ -86,8 +87,7 @@ class _FaceDetectionFromImageState extends State<FaceDetectionFromImage> {
         alignment: Alignment.center,
         padding: EdgeInsets.all(30),
         decoration: BoxDecoration(
-          color: Color(0xFF2A363B),
-          borderRadius: BorderRadius.circular(30),
+          color: Color(0xAADB4437),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -138,16 +138,17 @@ class _FaceDetectionFromImageState extends State<FaceDetectionFromImage> {
                   GestureDetector(
                     onTap: pickImage,
                     child: Container(
-                      width: MediaQuery.of(context).size.width - 200,
+                      width: MediaQuery.of(context).size.width - 150,
                       alignment: Alignment.center,
                       padding:
                           EdgeInsets.symmetric(horizontal: 24, vertical: 17),
                       decoration: BoxDecoration(
-                          color: Colors.blueGrey[600],
-                          borderRadius: BorderRadius.circular(15)),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(width: 2.0, color: Colors.blue)),
                       child: Text(
                         'Take A Photo',
-                        style: TextStyle(color: Colors.white, fontSize: 16),
+                        style: TextStyle(color: Colors.black, fontSize: 16),
                       ),
                     ),
                   ),
@@ -157,16 +158,18 @@ class _FaceDetectionFromImageState extends State<FaceDetectionFromImage> {
                   GestureDetector(
                     onTap: pickGalleryImage,
                     child: Container(
-                      width: MediaQuery.of(context).size.width - 200,
+                      width: MediaQuery.of(context).size.width - 150,
                       alignment: Alignment.center,
                       padding:
                           EdgeInsets.symmetric(horizontal: 24, vertical: 17),
                       decoration: BoxDecoration(
-                          color: Colors.blueGrey[600],
-                          borderRadius: BorderRadius.circular(15)),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(width: 2.0, color: Colors.red),
+                      ),
                       child: Text(
                         'Pick From Gallery',
-                        style: TextStyle(color: Colors.white, fontSize: 16),
+                        style: TextStyle(color: Colors.black, fontSize: 16),
                       ),
                     ),
                   ),

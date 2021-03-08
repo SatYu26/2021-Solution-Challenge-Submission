@@ -1,4 +1,4 @@
-package io.madhank93.facemaskdetection
+package com.example.mask_detection_app
 
 import io.flutter.embedding.android.FlutterActivity
 

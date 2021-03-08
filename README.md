@@ -1,4 +1,4 @@
-# 2021 Solution Challenge
+# mask_detection_app
 
 A new Flutter project.
 

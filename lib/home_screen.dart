@@ -1,4 +1,4 @@
-import './face_detection_camera.dart';
+import 'face_detection_camera.dart';
 import 'Detection_on_image.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +7,17 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Face Mask Detector'),backgroundColor: Colors.white70,shadowColor: Colors.red,
+        title: Center(
+            child: Text(
+          'Face Mask Detector',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 25,
+          ),
+        )),
+        backgroundColor: Colors.white,
+        shadowColor: Colors.black,
+        elevation: 1,
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -16,34 +26,53 @@ class HomeScreen extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Expanded(child: Container(color: Color(0x00000000),),),
-            RaisedButton( shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),side: BorderSide(color: Colors.blueAccent) ,
-            ),
-              child: Text('Detect face mask from the Image' , style: TextStyle(color: Colors.black ),),
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => FaceDetectionFromImage(),
-                  ),
-                );
-              },
-            ),
-            SizedBox(height: 10),
-            RaisedButton( shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),side: BorderSide(color: Colors.red)
-            ),
-              child: Text('Detect face mask from Live Camera' , style: TextStyle(color: Colors.black )),
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => FaceDetectionFromLiveCamera(),
-                  ),
-                );
-              },
-            ),
-          ],
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.grey[300],
+                  side: BorderSide(color: Colors.blueAccent, width: 2),
+                  elevation: 1,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      side: BorderSide(color: Colors.blueAccent)),
+                ),
+                child: Text(
+                  'Detect face mask from the Image',
+                  style: TextStyle(color: Colors.black),
+                ),
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => FaceDetectionFromImage(),
+                    ),
+                  );
+                },
+              ),
+              SizedBox(height: 10),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.grey[300],
+                  side: BorderSide(color: Colors.red, width: 2),
+                  elevation: 1,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      side: BorderSide(color: Colors.red)),
+                ),
+                child: Text('Detect face mask from Live Camera',
+                    style: TextStyle(color: Colors.black)),
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => FaceDetectionFromLiveCamera(),
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

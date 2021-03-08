@@ -1,6 +1,5 @@
-import 'package:facemaskdetection/splashscreen.dart';
-import 'package:flutter/material.dart' show BuildContext, Colors, MaterialApp, StatelessWidget, ThemeData, Widget, runApp;
-import 'home_screen.dart';
+import 'splashscreen.dart';
+import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
