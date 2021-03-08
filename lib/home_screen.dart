@@ -1,6 +1,6 @@
-import 'face_detection_camera.dart';
-import 'Detection_on_image.dart';
 import 'package:flutter/material.dart';
+import 'package:mask_detection_app/ui/camera_screen.dart';
+import 'package:mask_detection_app/ui/local_storage.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -44,11 +44,14 @@ class HomeScreen extends StatelessWidget {
                   style: TextStyle(color: Colors.black),
                 ),
                 onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => FaceDetectionFromImage(),
-                    ),
-                  );
+                  // Navigator.of(context).push(
+                  //   MaterialPageRoute(
+                  //     builder: (context) => FaceDetectionFromImage(),
+                  //   ),
+                  // );
+
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LocalStorage()));
                 },
               ),
               SizedBox(height: 10),
@@ -64,11 +67,14 @@ class HomeScreen extends StatelessWidget {
                 child: Text('Detect face mask from Live Camera',
                     style: TextStyle(color: Colors.black)),
                 onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => FaceDetectionFromLiveCamera(),
-                    ),
-                  );
+                  // Navigator.of(context).push(
+                  //   MaterialPageRoute(
+                  //     builder: (context) => FaceDetectionFromLiveCamera(),
+                  //   ),
+                  // );
+
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => CameraPage()));
                 },
               ),
             ],
