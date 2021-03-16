@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:tflite/tflite.dart';
 import 'dart:math' as math;
-import 'boundary_box.dart';
+
+import './boundary_box.dart';
 
 class FaceDetectionFromLiveCamera extends StatefulWidget {
   @override
@@ -12,97 +13,59 @@ class FaceDetectionFromLiveCamera extends StatefulWidget {
 
 class _FaceDetectionFromLiveCameraState
     extends State<FaceDetectionFromLiveCamera> {
-  List<CameraDescription> _availableCameras;
+  List<CameraDescription> cameras;
   CameraController cameraController;
   bool isDetecting = false;
   List<dynamic> _recognitions;
   int _imageHeight = 0;
   int _imageWidth = 0;
-  bool front = true;
+
   @override
   void initState() {
     super.initState();
     loadModel();
-    _getAvailableCameras();
-  }
-
-  @override
-  void dispose() {
-    cameraController?.dispose();
-    super.dispose();
-  }
-
-  Future<void> _getAvailableCameras() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    _availableCameras = await availableCameras();
-    _initializeCamera(_availableCameras[1]);
+    _initializeCamera();
   }
 
   void loadModel() async {
-    // await Tflite.close();
     await Tflite.loadModel(
       model: "assets/ml_trained_model/model_unquant.tflite",
       labels: "assets/ml_trained_model/labels.txt",
     );
   }
 
-  Future<void> _initializeCamera(CameraDescription description) async {
-    cameraController = CameraController(description, ResolutionPreset.high);
-    try {
-      await cameraController.initialize().then(
-        (_) {
-          if (!mounted) {
-            return;
-          }
-          cameraController.startImageStream(
-            (CameraImage img) {
-              if (!isDetecting) {
-                isDetecting = true;
-                Tflite.runModelOnFrame(
-                  bytesList: img.planes.map(
-                    (plane) {
-                      return plane.bytes;
-                    },
-                  ).toList(),
-                  threshold: 0.5,
-                  rotation: 0,
-                  imageHeight: img.height,
-                  imageWidth: img.width,
-                  numResults: 1,
-                ).then(
-                  (recognitions) {
-                    setRecognitions(recognitions, img.height, img.width);
-                    isDetecting = false;
+  void _initializeCamera() async {
+    cameras = await availableCameras();
+    cameraController = CameraController(cameras[0], ResolutionPreset.high);
+    cameraController.initialize().then(
+      (_) {
+        if (!mounted) {
+          return;
+        }
+        cameraController.startImageStream(
+          (CameraImage img) {
+            if (!isDetecting) {
+              isDetecting = true;
+              Tflite.runModelOnFrame(
+                bytesList: img.planes.map(
+                  (plane) {
+                    return plane.bytes;
                   },
-                );
-              }
-            },
-          );
-        },
-      );
-      setState(() {});
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  void _toggleCameraLens() {
-    // get current lens direction (front / rear)
-    final lensDirection = cameraController.description.lensDirection;
-    CameraDescription newDescription;
-    if (lensDirection == CameraLensDirection.front) {
-      newDescription = _availableCameras.firstWhere((description) =>
-          description.lensDirection == CameraLensDirection.back);
-    } else {
-      newDescription = _availableCameras.firstWhere((description) =>
-          description.lensDirection == CameraLensDirection.front);
-    }
-
-    if (newDescription != null) {
-      _initializeCamera(newDescription);
-    } else {
-      print('Asked camera not available');
-    }
+                ).toList(),
+                imageHeight: img.height,
+                imageWidth: img.width,
+                numResults: 2,
+              ).then(
+                (recognitions) {
+                  setRecognitions(recognitions, img.height, img.width);
+                  isDetecting = false;
+                },
+              );
+            }
+          },
+        );
+      },
+    );
   }
 
   void setRecognitions(recognitions, imageHeight, imageWidth) {
@@ -116,7 +79,6 @@ class _FaceDetectionFromLiveCameraState
   @override
   Widget build(BuildContext context) {
     Size screen = MediaQuery.of(context).size;
-
     return Container(
       constraints: const BoxConstraints.expand(),
       child: cameraController == null
@@ -124,37 +86,21 @@ class _FaceDetectionFromLiveCameraState
               alignment: Alignment.center,
               child: CircularProgressIndicator(),
             )
-          : Scaffold(
-              floatingActionButton: FloatingActionButton(
-                onPressed: () {
-                  front == true ? front = false : front = true;
-                  _toggleCameraLens();
-                },
-                child: Icon(
-                    front == true ? Icons.camera_rear : Icons.camera_front),
-              ),
-              backgroundColor: Colors.black,
-              appBar: AppBar(
-                title: Text("Mask detector"),
-                centerTitle: true,
-                backgroundColor: Colors.redAccent,
-              ),
-              body: Stack(
-                children: [
-                  Transform.scale(
-                    scale: 1,
-                    child: Center(
-                      child: CameraPreview(cameraController),
-                    ),
+          : Stack(
+              children: [
+                Center(
+                  child: AspectRatio(
+                    aspectRatio: cameraController.value.aspectRatio,
+                    child: CameraPreview(cameraController),
                   ),
-                  BoundaryBox(
-                      _recognitions == null ? [] : _recognitions,
-                      math.max(_imageHeight, _imageWidth),
-                      math.min(_imageHeight, _imageWidth),
-                      screen.height,
-                      screen.width),
-                ],
-              ),
+                ),
+                BoundaryBox(
+                    _recognitions == null ? [] : _recognitions,
+                    math.max(_imageHeight, _imageWidth),
+                    math.min(_imageHeight, _imageWidth),
+                    screen.height,
+                    screen.width),
+              ],
             ),
     );
   }

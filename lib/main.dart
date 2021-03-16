@@ -1,5 +1,13 @@
 import 'splashscreen.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'
+    show
+        BuildContext,
+        Colors,
+        MaterialApp,
+        StatelessWidget,
+        ThemeData,
+        Widget,
+        runApp;
 
 void main() => runApp(MyApp());
 
