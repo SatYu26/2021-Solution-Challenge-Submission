@@ -1,6 +1,6 @@
 {
-    "name": "face_mask_detection",
-    "short_name": "face_mask_detection",
+    "name": "mask_detection",
+    "short_name": "mask_detection",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
