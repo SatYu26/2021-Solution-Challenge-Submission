@@ -6,6 +6,20 @@ The recent coronavirus pandemic has pushed people around the world to new challe
 
 Although it is not entirely clear how much the use of the face mask can protect us from the virus, it is chilling to see how far a simple sneeze can drop breath droplets, potentially carrying with them the virus.
 
+## GETTING STARTED
+
+- Clone this repo: `https://github.com/SatYu26/2021-Solution-Challenge-Submission`
+
+- cd into the folder: `cd 2021-Solution-Challenge-Submission`
+
+- run pub get: `flutter pub get`
+
+- Attach a device or emulator to PC
+
+- run the app: `flutter run`
+
+- To get started in using Flutter visit <a href="https://flutter.dev/docs/get-started/install">HERE</a>.
+
 ## A good face mask detector for mobile
 
 The great Adrian Rosebrock, has recently published a great <a href="https://www.pyimagesearch.com/2020/05/04/covid-19-face-mask-detector-with-opencv-keras-tensorflow-and-deep-learning/">article</a> about how to train a deep learning model to achieve this task. In his post he used <a href="https://github.com/prajnasb/observations">this dataset</a> provided by Prajna Bhandary, which was very cleverly generated (by artificially drawing face masks over the positions of detected face landmarks).
@@ -46,20 +60,6 @@ And we adjust the required parameters to fit our model requirements in the Detec
 Then we can modify the recognizeImage method of TensorFlow Lite model class (we don’t need anymore the output locations, and now we only have one prediction for each execution), the label for the output is hard-coded but it could be easily retrieved from the label mappings text file:
 
 Finally we can modify a little the Recognition class, and the MultiboxTracker class by adding a color to the recognition result. In our case Green for “mask”, Red for “no mask” and blue for “not sure” if the confidence is lower than a threshold.
-
-## GETTING STARTED
-
-- Clone this repo: `https://github.com/SatYu26/2021-Solution-Challenge-Submission`
-
-- cd into the folder: `cd 2021-Solution-Challenge-Submission`
-
-- run pub get: `flutter pub get`
-
-- Attach a device or emulator to PC
-
-- run the app: `flutter run`
-
-- To get started in using Flutter visit <a href="https://flutter.dev/docs/get-started/install">HERE</a>.
 
 # WORKING
 
