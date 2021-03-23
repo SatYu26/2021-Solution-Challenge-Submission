@@ -66,21 +66,20 @@ Finally we can modify a little the Recognition class, and the MultiboxTracker cl
 ## Face mask Detection
 
 <img src="https://www.pyimagesearch.com/wp-content/uploads/2020/04/face_mask_detection_phases.png">
-
+<br>
 In order to train a custom face mask detector, we need to break our project into two distinct phases, each with its own respective sub-steps (as shown by Figure above):
 
-<ul>
-<li><b>Training</b>: Here we’ll focus on loading our face mask detection dataset from disk, training a model (using Keras/TensorFlow) on this dataset, and then serializing the face mask detector to disk
-<li><b>Deployment</b>: Once the face mask detector is trained, we can then move on to loading the mask detector, performing face detection, and then classifying each face as ```with_mask``` or ```without_mask```
-</ul>
-
-<img src="https://www.pyimagesearch.com/wp-content/uploads/2020/04/face_mask_detection_dataset.jpg">
+- <b>Training</b>: Here we’ll focus on loading our face mask detection dataset from disk, training a model (using Keras/TensorFlow) on this dataset, and then serializing the face mask detector to disk
+- <b>Deployment</b>: Once the face mask detector is trained, we can then move on to loading the mask detector, performing face detection, and then classifying each face as `with_mask` or `without_mask`.
+  <br>
+  <img src="https://www.pyimagesearch.com/wp-content/uploads/2020/04/face_mask_detection_dataset.jpg">
 
 The dataset we’ll be using here today was created by <a href="https://www.linkedin.com/feed/update/urn%3Ali%3Aactivity%3A6655711815361761280/">Prajna Bhandary</a>.
 
 This dataset consists of 1,376 images belonging to two classes:
 
--`with_mask`: 690 images -`without_mask`: 686 images
+- `with_mask`: 690 images
+- `without_mask`: 686 images
 
 Our goal is to train a custom deep learning model to detect whether a person is or is not wearing a mask.
 
@@ -93,7 +92,7 @@ Create a new Flutter Project and add tflite and image_picker as a dependency in 
 In android/app/build.gradle, add the following setting in android block.
 
 <img src="https://miro.medium.com/max/318/1*XLlgkfmxhXnkZf2JRcHmdA.png">
-
+<br>
 Create a assets folder and place your labels.txt file and model_unquant.tflite file in assets folder. In pubspec.yaml. Also add them in pubspec.yaml file as assets.
 
 In main.dart include import 'package:tflite/tflite.dart'; & import `‘package:image_picker/image_picker.dart’;`
