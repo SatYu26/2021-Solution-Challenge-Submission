@@ -107,6 +107,7 @@ Create a assets folder and place your labels.txt file and model_unquant.tflite f
 In main.dart include import 'package:tflite/tflite.dart'; & import `‘package:image_picker/image_picker.dart’;`
 The image_picker plugin will be used for picking images from the image library, and taking new pictures with the camera.
 After importing libraries, it’s time to load your `.tflite` model in `main.dart` .We will be using a bool variable `_loading` to show CircularProgressIndicator while the model is loading.
+
 <br>
 
 ```
@@ -134,6 +135,7 @@ loadModel() async {
 ```
 
 <br>
+
 Now, we will use `image_picker` plugin to pick an image from the Gallery whenever the `FloatingActionButton` is pressed. The image we pick will be passed as an argument to classifyImage. We will use Tflite.runModelOnImage to classify images of Mask and Non Mask.
 `Tflite.runModelOnImage` returns `Future<List>`
 
