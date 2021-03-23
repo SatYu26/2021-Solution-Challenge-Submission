@@ -65,16 +65,22 @@ Finally we can modify a little the Recognition class, and the MultiboxTracker cl
 
 ## Face mask Detection
 
+<br>
 <img src="https://www.pyimagesearch.com/wp-content/uploads/2020/04/face_mask_detection_phases.png">
 <br>
 In order to train a custom face mask detector, we need to break our project into two distinct phases, each with its own respective sub-steps (as shown by Figure above):
 
 - <b>Training</b>: Here we’ll focus on loading our face mask detection dataset from disk, training a model (using Keras/TensorFlow) on this dataset, and then serializing the face mask detector to disk
 - <b>Deployment</b>: Once the face mask detector is trained, we can then move on to loading the mask detector, performing face detection, and then classifying each face as `with_mask` or `without_mask`.
+
   <br>
+  <br>
+
   <img src="https://www.pyimagesearch.com/wp-content/uploads/2020/04/face_mask_detection_dataset.jpg">
 
-The dataset we’ll be using here today was created by <a href="https://www.linkedin.com/feed/update/urn%3Ali%3Aactivity%3A6655711815361761280/">Prajna Bhandary</a>.
+  <br>
+
+  The dataset we’ll be using here today was created by <a href="https://www.linkedin.com/feed/update/urn%3Ali%3Aactivity%3A6655711815361761280/">Prajna Bhandary</a>.
 
 This dataset consists of 1,376 images belonging to two classes:
 
@@ -90,7 +96,7 @@ NOTE: for more information on how to create face mask detector model click <a hr
 Create a new Flutter Project and add tflite and image_picker as a dependency in your pubspec.yaml file.
 
 In android/app/build.gradle, add the following setting in android block.
-
+<br>
 <img src="https://miro.medium.com/max/318/1*XLlgkfmxhXnkZf2JRcHmdA.png">
 <br>
 Create a assets folder and place your labels.txt file and model_unquant.tflite file in assets folder. In pubspec.yaml. Also add them in pubspec.yaml file as assets.
@@ -98,6 +104,7 @@ Create a assets folder and place your labels.txt file and model_unquant.tflite f
 In main.dart include import 'package:tflite/tflite.dart'; & import `‘package:image_picker/image_picker.dart’;`
 The image_picker plugin will be used for picking images from the image library, and taking new pictures with the camera.
 After importing libraries, it’s time to load your `.tflite` model in `main.dart` .We will be using a bool variable `_loading` to show CircularProgressIndicator while the model is loading.
+<br>
 
 ```
 bool _loading; // the _loading will be used to show CircularProgressIndicator if _loading is true
@@ -123,6 +130,7 @@ loadModel() async {
 
 ```
 
+<br>
 Now, we will use `image_picker` plugin to pick an image from the Gallery whenever the `FloatingActionButton` is pressed. The image we pick will be passed as an argument to classifyImage. We will use Tflite.runModelOnImage to classify images of Mask and Non Mask.
 `Tflite.runModelOnImage` returns `Future<List>`
 
