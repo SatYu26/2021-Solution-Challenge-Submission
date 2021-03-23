@@ -74,7 +74,6 @@ In order to train a custom face mask detector, we need to break our project into
 - <b>Deployment</b>: Once the face mask detector is trained, we can then move on to loading the mask detector, performing face detection, and then classifying each face as `with_mask` or `without_mask`.
 
   <br>
-  <br>
 
   <img src="https://www.pyimagesearch.com/wp-content/uploads/2020/04/face_mask_detection_dataset.jpg">
 
@@ -96,9 +95,13 @@ NOTE: for more information on how to create face mask detector model click <a hr
 Create a new Flutter Project and add tflite and image_picker as a dependency in your pubspec.yaml file.
 
 In android/app/build.gradle, add the following setting in android block.
+
 <br>
+
 <img src="https://miro.medium.com/max/318/1*XLlgkfmxhXnkZf2JRcHmdA.png">
+
 <br>
+
 Create a assets folder and place your labels.txt file and model_unquant.tflite file in assets folder. In pubspec.yaml. Also add them in pubspec.yaml file as assets.
 
 In main.dart include import 'package:tflite/tflite.dart'; & import `‘package:image_picker/image_picker.dart’;`
