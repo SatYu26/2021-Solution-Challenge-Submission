@@ -20,6 +20,14 @@ Although it is not entirely clear how much the use of the face mask can protect 
 
 - To get started in using Flutter visit <a href="https://flutter.dev/docs/get-started/install">HERE</a>.
 
+## Preview
+
+
+<img src="./Demo/Showcase.gif"
+     alt="demo2"
+     style="float: left; margin-right: 10px;" />
+
+
 ## A good face mask detector for mobile
 
 The great Adrian Rosebrock, has recently published a great <a href="https://www.pyimagesearch.com/2020/05/04/covid-19-face-mask-detector-with-opencv-keras-tensorflow-and-deep-learning/">article</a> about how to train a deep learning model to achieve this task. In his post he used <a href="https://github.com/prajnasb/observations">this dataset</a> provided by Prajna Bhandary, which was very cleverly generated (by artificially drawing face masks over the positions of detected face landmarks).
