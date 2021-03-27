@@ -25,7 +25,7 @@ Although it is not entirely clear how much the use of the face mask can protect 
 
 <img src="./Demo/Showcase.gif"
      alt="demo2"
-     width="400px"
+     width="300px"
      style="float: left; margin-right: 10px; " />
 
 
