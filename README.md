@@ -25,7 +25,8 @@ Although it is not entirely clear how much the use of the face mask can protect 
 
 <img src="./Demo/Showcase.gif"
      alt="demo2"
-     style="float: left; margin-right: 10px; width="200px"" />
+     width="200px"
+     style="float: left; margin-right: 10px; " />
 
 
 ## A good face mask detector for mobile
